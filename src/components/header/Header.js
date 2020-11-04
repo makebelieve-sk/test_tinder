@@ -1,24 +1,39 @@
 import React from 'react';
-
+import { Link, useHistory } from 'react-router-dom';
 import PersonIcon from '@material-ui/icons/Person';
 import ForumIcon from '@material-ui/icons/Forum';
 import IconButton from '@material-ui/core/IconButton';
+import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 
 import './header.css';
 
-export const Header = () => {
+export const Header = ({ backButton }) => {
+    const history = useHistory();
+
     return (
         <div className="header">
-            <IconButton>
-                <PersonIcon className="header__icon" fontSize="large" />
-            </IconButton>
-            <img 
-                className="header__logo"
-                src="http://1000logos.net/wp-content/uploads/2018/07/tinder-logo.png" 
-                alt="tinder-logo" />
-            <IconButton>
-                <ForumIcon className="header__icon" fontSize="large" />
-            </IconButton>
+            { 
+                backButton ? 
+                    <IconButton onClick={() => history.replace(backButton)}>
+                        <ArrowBackIosIcon className="header__icon" fontSize="large" />
+                    </IconButton> :
+                    <Link to="profile">
+                        <IconButton>
+                            <PersonIcon className="header__icon" fontSize="large" />
+                        </IconButton>
+                    </Link>
+            }
+            <Link to="/">
+                <img 
+                    className="header__logo"
+                    src="http://1000logos.net/wp-content/uploads/2018/07/tinder-logo.png" 
+                    alt="tinder-logo" />
+            </Link>
+            <Link to="/chat">
+                <IconButton>
+                    <ForumIcon className="header__icon" fontSize="large" />
+                </IconButton>
+            </Link>
         </div>
     )
 };
