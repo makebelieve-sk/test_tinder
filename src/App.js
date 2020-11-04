@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 import { Header } from './components/header/Header';
+import { TinderCardComponent } from './components/tinder-card/TinderCard';
 
 import './App.css';
 
@@ -12,7 +13,7 @@ export const App = () => (
     <Router>
       <Switch>
         <Route path="/" exact >
-          I am homepage
+          <TinderCardComponent />
         </Route>
         <Route path="/chat" >
           I am chatpage
